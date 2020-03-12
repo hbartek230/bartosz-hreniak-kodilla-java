@@ -2,20 +2,21 @@ package com.kodilla.testing.shape;
 
 public class Square implements Shape {
 
-    int a;
+    private final static String shapeName = "Square";
+    int side;
 
-    public Square(int a) {
-        this.a = a;
+    public Square(int side) {
+        this.side = side;
     }
 
     @Override
     public String getShapeName() {
-        return this.getClass().toString();
+        return shapeName;
     }
 
     @Override
     public double getField() {
-        double result = Math.pow(a, 2);
+        double result = Math.pow(side, 2);
         return result;
     }
 }
