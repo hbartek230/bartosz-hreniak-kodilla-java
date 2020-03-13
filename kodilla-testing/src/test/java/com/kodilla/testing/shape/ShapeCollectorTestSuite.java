@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class ShapeCollectorTestSuite {
     private static int testCounter = 0;
+    ShapeCollector newShape;
 
     @BeforeClass
     public static void beforeAllTests() {
@@ -21,49 +22,45 @@ public class ShapeCollectorTestSuite {
     public void beforeEveryTest() {
         testCounter++;
         System.out.println("Preparing to execute test #" + testCounter);
+        newShape = new ShapeCollector();
     }
 
     @Test
     public void testAddFigure(){
         //Given
-        ShapeCollector newShape = new ShapeCollector();
         Shape testedShape = new Circle(2);
         //When
-        ArrayList<Shape> shape = newShape.addFigure(testedShape);
+        newShape.addFigure(testedShape);
         //Then
-        Assert.assertEquals(1, shape.size());
+        Assert.assertEquals(1, newShape.showFigures().size());
 
     }
 
     @Test
     public void testRemoveFigure(){
         //Given
-        ShapeCollector newShape = new ShapeCollector();
         Shape testedShape = new Circle(2);
         newShape.addFigure(testedShape);
         //When
-        boolean testResult = newShape.removeFigure(testedShape);
+        newShape.removeFigure(testedShape);
         //Then
-        Assert.assertTrue(testResult);
+        Assert.assertEquals(0, newShape.showFigures().size());
     }
 
     @Test
     public void testRemoveFigureDoesNotExist(){
         //Given
-        ShapeCollector newShape = new ShapeCollector();
         Shape randomShape = new Circle(2);
         newShape.addFigure(randomShape);
         //When
         Shape testedShape = new Circle(5);
-        boolean testResult = newShape.removeFigure(testedShape);
         //Then
-        Assert.assertFalse(testResult);
+        Assert.assertEquals(1, newShape.showFigures().size());
     }
 
     @Test
     public void testGetFigure(){
         //Given
-        ShapeCollector newShape = new ShapeCollector();
         Shape testedShape = new Circle(2);
         newShape.addFigure(testedShape);
         //When
@@ -74,8 +71,6 @@ public class ShapeCollectorTestSuite {
 
     @Test
     public void testGetFigureWhenListIsEmpty(){
-        //Given
-        ShapeCollector newShape = new ShapeCollector();
         //When
         Shape expected = newShape.getFigure(0);
         //Then
@@ -85,7 +80,6 @@ public class ShapeCollectorTestSuite {
     @Test
     public void testShowFigure(){
         //Given
-        ShapeCollector newShape = new ShapeCollector();
         Shape testedShape = new Circle(2);
         newShape.addFigure(testedShape);
         //When
