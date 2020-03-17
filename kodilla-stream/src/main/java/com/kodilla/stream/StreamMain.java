@@ -1,5 +1,6 @@
 package com.kodilla.stream;
 
+import com.kodilla.stream.beautifier.PoemBeautifier;
 import com.kodilla.stream.lambda.Executor;
 import com.kodilla.stream.lambda.ExpressionExecutor;
 import com.kodilla.stream.lambda.Processor;
@@ -17,5 +18,15 @@ public class StreamMain {
         expressionExecutor.executeExpression(10, 5, (a, b) -> a - b);
         expressionExecutor.executeExpression(10, 5, (a, b) -> a * b);
         expressionExecutor.executeExpression(10, 5, (a, b) -> a / b);
+
+        String textToTest = "Bartek";
+        PoemBeautifier pb = new PoemBeautifier();
+        pb.beautify(textToTest, (decoration -> "Jestem " + textToTest));
+        pb.beautify(textToTest, (decoration -> textToTest + " Hreniak"));
+        pb.beautify(textToTest, (decoration -> textToTest.toUpperCase()));
+        pb.beautify(textToTest, (decoration -> textToTest.toUpperCase().toLowerCase()));
+        pb.beautify(textToTest, (decoration -> "---" + textToTest));
+        pb.beautify(textToTest, (decoration -> textToTest + "---"));
+        pb.beautify(textToTest, (decoration -> "---" + textToTest + "---"));
     }
 }
