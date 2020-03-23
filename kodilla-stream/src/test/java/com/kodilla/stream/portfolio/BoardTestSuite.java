@@ -141,21 +141,4 @@ public class BoardTestSuite {
         // then
         Assert.assertEquals(2, longTasks);
     }
-
-    @Test
-    public void testAddTaskListAverageWorkingOnTask(){
-        // given
-        Board project = prepareTestData();
-
-        // when
-        double tested = project.getTaskLists().stream()
-                .flatMap(tl -> tl.getTasks().stream())
-                .map(t -> (LocalDate.now().toEpochDay() - t.getCreated().toEpochDay()))
-                .mapToDouble(Double::valueOf)
-                .average().getAsDouble();
-
-        // then
-        double expected = 14.16;
-        Assert.assertEquals(expected, tested, 0.01);
-    }
 }
