@@ -148,14 +148,17 @@ public class BoardTestSuite {
         Board project = prepareTestData();
 
         // when
+        List<TaskList> undoneTasks = new ArrayList<>();
+        undoneTasks.add(new TaskList("In progress"));
         double tested = project.getTaskLists().stream()
+                .filter(undoneTasks::contains)
                 .flatMap(tl -> tl.getTasks().stream())
                 .map(t -> (LocalDate.now().toEpochDay() - t.getCreated().toEpochDay()))
                 .mapToDouble(Double::valueOf)
                 .average().getAsDouble();
 
         // then
-        double expected = 14.16;
+        double expected = 10.00;
         Assert.assertEquals(expected, tested, 0.01);
     }
 }
