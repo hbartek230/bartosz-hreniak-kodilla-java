@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 
 public class FileReader {
 
-    public void readFile(){
+    public void readFile() throws FileReaderException {
 
         ClassLoader loader = getClass().getClassLoader();
         File file = new File(loader.getResource("file/names.txt").getFile());
@@ -20,15 +20,13 @@ public class FileReader {
 
         } catch (IOException e){
 
-            System.out.println("Oh oh oh. Something is wrong\n");
+            throw new FileReaderException();
+
 
         } finally {
 
             System.out.println("I am gonna be here...always");
 
         }
-
-
-
     }
 }
