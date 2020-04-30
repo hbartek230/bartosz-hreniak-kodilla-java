@@ -1,9 +1,6 @@
 package com.kodilla.good.patterns.challenges;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class MovieStore {
@@ -46,9 +43,9 @@ public class MovieStore {
         String tested = movies.getMovies()
                 .values()
                 .stream()
-                .map(movie -> movie.toString())
+                .flatMap(Collection::parallelStream)
+                .map(String::toString)
                 .collect(Collectors.joining("!"));
         System.out.println(tested);
     }
-
 }
