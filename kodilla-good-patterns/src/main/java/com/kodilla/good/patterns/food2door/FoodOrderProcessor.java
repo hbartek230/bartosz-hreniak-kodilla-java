@@ -10,29 +10,20 @@ import java.util.Map;
 public class FoodOrderProcessor implements ServiceRepositoryConnector {
 
     private final HashMap<DeliversService, OrderRepository> serviceRepositoryConnector = new HashMap<>();
-    private final OrderRequest extraFoodRequest;
-    private final OrderRequest glutenFreeRequest;
-    private final OrderRequest healthyRequest;
+
 
     public FoodOrderProcessor() {
         OrderRequestRetriever retriever = new OrderRequestRetriever(this);
-        extraFoodRequest = retriever.extraFoodRetrieve();
-        glutenFreeRequest = retriever.glutenFreeRetrieve();
-        healthyRequest = retriever.healthyGroupRetrieve();
 
-        makeOrders();
+        makeOrders(retriever.extraFoodRetrieve());
+        makeOrders(retriever.glutenFreeRetrieve());
+        makeOrders(retriever.healthyGroupRetrieve());
     }
 
-    private void makeOrders() {
-        DeliveryProcessor processor = new DeliveryProcessor(extraFoodRequest.getDeliver(),
-                chooseRepository(serviceRepositoryConnector, extraFoodRequest), new SmsService());
-        processor.processOrder(extraFoodRequest);
-        processor = new DeliveryProcessor(extraFoodRequest.getDeliver(),
-                chooseRepository(serviceRepositoryConnector, glutenFreeRequest), new SmsService());
-        processor.processOrder(glutenFreeRequest);
-        processor = new DeliveryProcessor(extraFoodRequest.getDeliver(),
-                chooseRepository(serviceRepositoryConnector, healthyRequest), new SmsService());
-        processor.processOrder(healthyRequest);
+    private void makeOrders(OrderRequest request) {
+        DeliveryProcessor processor = new DeliveryProcessor(request.getDeliver(),
+                chooseRepository(serviceRepositoryConnector, request), new SmsService());
+        processor.processOrder(request);
     }
 
     @Override
