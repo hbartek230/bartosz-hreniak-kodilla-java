@@ -22,34 +22,21 @@ public class LibraryTestSuite {
     }
 
     @Test
-    public void testGetBooks() {
+    public void testGetBooks() throws Exception{
         // given
 
-        Library clonedLibrary = null;
-        try {
-            clonedLibrary = library.shallowCopy();
-            clonedLibrary.setName("Cottage Library");
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
+        Library clonedLibrary;
+        clonedLibrary = library.shallowCopy();
+        clonedLibrary.setName("Cottage Library");
 
-        Library deepClonedLibrary = null;
-        try {
-            deepClonedLibrary = library.deepCopy();
-            deepClonedLibrary.setName(" Village Library");
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
+        Library deepClonedLibrary;
+        deepClonedLibrary = library.deepCopy();
+        deepClonedLibrary.setName(" Village Library");
 
         // when
         library.getBooks().add(new Book("Own Title", "Own Author", LocalDate.now()));
 
         // then
-        assert clonedLibrary != null;
-        assert deepClonedLibrary != null;
-        System.out.println(library.getBooks());
-        System.out.println(clonedLibrary.getBooks());
-        System.out.println(deepClonedLibrary.getBooks());
         Assert.assertEquals(16, library.getBooks().size());
         Assert.assertEquals(16, clonedLibrary.getBooks().size());
         Assert.assertEquals(15, deepClonedLibrary.getBooks().size());
