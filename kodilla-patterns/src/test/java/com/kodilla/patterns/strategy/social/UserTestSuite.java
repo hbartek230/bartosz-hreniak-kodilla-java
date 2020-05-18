@@ -14,11 +14,8 @@ public class UserTestSuite {
 
         // when
         String johnSharing = john.sharePost();
-        System.out.println(john.getUsername() + " " + johnSharing);
         String adamSharing = adam.sharePost();
-        System.out.println(adam.getUsername() + " " + adamSharing);
         String scottSharing = scott.sharePost();
-        System.out.println(scott.getUsername() + " " + scottSharing);
 
         // then
         Assert.assertEquals("Sharing on Facebook", johnSharing);
@@ -33,12 +30,11 @@ public class UserTestSuite {
 
         // when
         String johnSharing = john.sharePost();
-        System.out.println(john.getUsername() + " " + johnSharing);
         john.setPublisher(new SnapchatPublisher());
         String newSharing = john.sharePost();
-        System.out.println(john.getUsername() + " now " + newSharing);
 
         // then
+        Assert.assertEquals("Sharing on Facebook", johnSharing);
         Assert.assertEquals("Sharing on Snapchat", newSharing);
     }
 }
