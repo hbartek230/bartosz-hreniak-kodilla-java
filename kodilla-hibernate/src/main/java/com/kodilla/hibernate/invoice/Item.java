@@ -32,7 +32,7 @@ public class Item {
         return id;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "PRODUCT_ID")
     public Product getProduct() {
         return product;
@@ -55,11 +55,11 @@ public class Item {
 
     @ManyToOne
     @JoinColumn(name = "INVOICE_ID")
-    public Invoice getInvoice(){
+    public Invoice getInvoice() {
         return invoice;
     }
 
-    public void setInvoice(Invoice invoice){
+    public void setInvoice(Invoice invoice) {
         this.invoice = invoice;
     }
 

@@ -20,7 +20,7 @@ public class InvoiceDaoTestSuite {
     private InvoiceDao invoiceDao;
 
     @Test
-    public void testInvoiceDaoSave(){
+    public void testInvoiceDaoSave() {
         // given
         Product product1 = new Product("Produkt1");
         Product product2 = new Product("Produkt2");
@@ -49,6 +49,6 @@ public class InvoiceDaoTestSuite {
         Assert.assertNotEquals(0, id);
 
         // clearUp
-        //invoiceDao.deleteById(id);
+        invoiceDao.deleteById(id);
     }
 }
