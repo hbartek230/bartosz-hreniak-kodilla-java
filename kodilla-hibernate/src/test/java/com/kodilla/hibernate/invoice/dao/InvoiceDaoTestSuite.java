@@ -18,6 +18,8 @@ import java.util.Arrays;
 public class InvoiceDaoTestSuite {
     @Autowired
     private InvoiceDao invoiceDao;
+    @Autowired
+    private ItemDao itemDao;
 
     @Test
     public void testInvoiceDaoSave() {
@@ -47,6 +49,21 @@ public class InvoiceDaoTestSuite {
 
         //then
         Assert.assertNotEquals(0, id);
+        Assert.assertEquals(invoice1.getItems().get(0).getProduct().getName(),
+                itemDao.findByProduct(product1).getProduct().getName()
+        );
+        Assert.assertEquals(invoice1.getItems().get(1).getProduct().getName(),
+                itemDao.findByProduct(product2).getProduct().getName())
+        ;
+        Assert.assertEquals(invoice1.getItems().get(2).getProduct().getName(),
+                itemDao.findByProduct(product3).getProduct().getName()
+        );
+        Assert.assertEquals(invoice1.getItems().get(3).getProduct().getName(),
+                itemDao.findByProduct(product4).getProduct().getName()
+        );
+        Assert.assertEquals(invoice1.getItems().get(4).getProduct().getName(),
+                itemDao.findByProduct(product5).getProduct().getName()
+        );
 
         // clearUp
         invoiceDao.deleteById(id);
