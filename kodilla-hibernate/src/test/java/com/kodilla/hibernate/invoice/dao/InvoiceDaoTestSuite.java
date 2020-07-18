@@ -66,6 +66,6 @@ public class InvoiceDaoTestSuite {
         );
 
         // clearUp
-        invoiceDao.deleteById(id);
+        //invoiceDao.deleteById(id);
     }
 }
