@@ -102,7 +102,7 @@ public class CompanyDaoTestSuite {
             companyDao.deleteById(softwareMachine.getId());
             companyDao.deleteById(dataMaesters.getId());
             companyDao.deleteById(greyMatter.getId());
-        } catch (Exception ignored){
+        } catch (Exception ignored) {
 
         }
     }
@@ -144,7 +144,7 @@ public class CompanyDaoTestSuite {
             companyDao.deleteById(softwareMachine.getId());
             companyDao.deleteById(dataMaesters.getId());
             companyDao.deleteById(greyMatter.getId());
-        } catch (Exception ignored){
+        } catch (Exception ignored) {
 
         }
     }
